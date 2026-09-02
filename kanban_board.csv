@@ -1,0 +1,26 @@
+task_id,task_name,workstream,owner,status,start_date,due_date,milestone_id
+T001,Draft project charter,Project Initiation,Project Manager,Done,2026-01-05,2026-01-07,M001
+T002,Confirm project governance roles,Project Initiation,Project Manager,Done,2026-01-05,2026-01-09,M001
+T003,Create AI governance checklist,Project Initiation,Governance Lead,Done,2026-01-06,2026-01-09,M001
+T004,Collect AI use-case ideas,AI Use-Case Discovery,Business Analyst,Done,2026-01-12,2026-01-23,M002
+T005,Interview department stakeholders,AI Use-Case Discovery,Business Analyst,Done,2026-01-12,2026-01-30,M002
+T006,Score candidate use cases,AI Use-Case Discovery,Product Lead,Done,2026-01-26,2026-02-03,M002
+T007,Approve prioritized use cases,AI Use-Case Discovery,Steering Committee,Done,2026-02-04,2026-02-06,M002
+T008,Inventory pilot data sources,Data Readiness & Security,Data Lead,Done,2026-02-09,2026-02-20,M003
+T009,Assess data quality,Data Readiness & Security,Data Analyst,In Progress,2026-02-16,2026-02-27,M003
+T010,Complete security review,Data Readiness & Security,Security Lead,In Progress,2026-02-23,2026-03-06,M003
+T011,Document approved AI tools,Data Readiness & Security,Technology Lead,Done,2026-02-23,2026-03-06,M003
+T012,Define training curriculum,Employee Enablement,Training Lead,In Progress,2026-03-09,2026-03-20,M004
+T013,Prepare training materials,Employee Enablement,Training Lead,In Progress,2026-03-16,2026-03-27,M004
+T014,Schedule pilot-team training,Employee Enablement,Change Lead,Todo,2026-03-23,2026-03-27,M004
+T015,Publish AI usage guidelines,Employee Enablement,Governance Lead,Done,2026-03-16,2026-03-27,M004
+T016,Configure pilot environments,Pilot Implementation,Technology Lead,Todo,2026-03-30,2026-04-03,M005
+T017,Complete pilot access approvals,Pilot Implementation,Security Lead,Todo,2026-03-30,2026-04-03,M005
+T018,Run pilot team training,Pilot Implementation,Training Lead,Todo,2026-03-30,2026-04-03,M005
+T019,Launch approved AI pilots,Pilot Implementation,Project Manager,Todo,2026-04-06,2026-04-10,M005
+T020,Collect pilot usage data,Pilot Implementation,Analytics Lead,Todo,2026-04-13,2026-05-15,M006
+T021,Collect user feedback,Pilot Implementation,Change Lead,Todo,2026-04-20,2026-05-15,M006
+T022,Evaluate pilot outcomes,Pilot Implementation,Analytics Lead,Todo,2026-05-18,2026-05-29,M006
+T023,Prepare rollout recommendation,Rollout Readiness,Project Manager,Todo,2026-06-01,2026-06-12,M007
+T024,Approve rollout recommendation,Rollout Readiness,Steering Committee,Blocked,2026-06-15,2026-06-19,M007
+T025,Complete project closeout and lessons learned,Project Closeout,Project Manager,Todo,2026-06-22,2026-06-30,M008

@@ -1,0 +1,9 @@
+milestone_id,milestone_name,start_date,end_date,workstream,description
+M001,Project Kickoff,2026-01-05,2026-01-09,Project Initiation,Project charter and governance approach established
+M002,Use-Case Discovery Complete,2026-01-12,2026-02-06,AI Use-Case Discovery,Candidate AI use cases collected and prioritized
+M003,Data & Security Readiness Review Complete,2026-02-09,2026-03-06,Data Readiness & Security,Pilot data and security requirements reviewed
+M004,Training Program Ready,2026-03-09,2026-03-27,Employee Enablement,Training materials and delivery plan ready
+M005,Pilot Launch,2026-04-06,2026-04-10,Pilot Implementation,Approved pilot use cases launched
+M006,Pilot Evaluation Complete,2026-05-04,2026-05-29,Pilot Implementation,Pilot outcomes measured and documented
+M007,Rollout Readiness Recommendation,2026-06-01,2026-06-19,Rollout Readiness,Recommendation prepared from pilot evidence
+M008,Project Closeout,2026-06-22,2026-06-30,Project Closeout,Final documentation and lessons learned completed

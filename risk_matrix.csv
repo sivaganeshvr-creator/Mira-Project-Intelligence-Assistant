@@ -1,0 +1,9 @@
+risk_id,category,risk_description,impact,likelihood,rating,mitigation,owner,status
+R001,Governance,AI use cases may not meet internal governance requirements.,High,Medium,High,Complete governance review before pilot approval; maintain approval checklist.,Project Governance Lead,Open
+R002,Data,Pilot data may be incomplete or unsuitable for the selected AI use cases.,High,Medium,High,Perform data readiness assessment before pilot launch.,Data Lead,Open
+R003,Security,Sensitive data could be exposed through an unapproved AI tool or workflow.,High,Low,High,Restrict pilots to approved tools and complete security review.,Security Lead,Open
+R004,People,Employees may not complete required AI training before using pilot tools.,Medium,Medium,Medium,Track training completion and block pilot access for incomplete training.,Training Lead,Open
+R005,Adoption,Pilot teams may have low adoption because users do not understand the approved use cases.,Medium,Medium,Medium,"Provide role-specific training, examples, and office hours.",Change Lead,Open
+R006,Delivery,Pilot implementation may slip if dependencies are not completed before launch.,Medium,Medium,Medium,Use dependency checklist and weekly readiness review.,Project Manager,Open
+R007,Measurement,Pilot outcomes may not be measured consistently across teams.,Medium,Medium,Medium,Define success measures before pilot launch and use a common evaluation template.,Analytics Lead,Open
+R008,Vendor,An approved AI service may change functionality or availability during the pilot.,Medium,Low,Medium,Document fallback procedures and monitor service availability.,Technology Lead,Open

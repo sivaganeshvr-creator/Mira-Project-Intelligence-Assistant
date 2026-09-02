@@ -1,0 +1,35 @@
+ABCDE Ltd. AI Adoption Project
+DATASET STATUS: SYNTHETIC REPLACEMENT DATASET
+
+Important:
+The course assignment describes a complete ABCDE Ltd. dataset, but the actual course dataset files were not available in the materials provided to ChatGPT. This dataset is therefore a clearly labeled synthetic replacement created to let the Mira n8n build proceed. Do not present these values as the official course dataset unless your instructor confirms them.
+
+Project objective:
+ABCDE Ltd. is running a six-month AI Adoption Project to introduce practical, governed use of AI across selected business functions. The project focuses on preparing employees, selecting approved AI use cases, establishing governance, piloting the use cases, measuring outcomes, and preparing a controlled rollout.
+
+Project duration:
+Six months, January 2026 through June 2026.
+
+Primary workstreams:
+1. Project initiation and governance
+2. AI use-case discovery and prioritization
+3. Data readiness and security review
+4. Employee enablement and training
+5. Pilot implementation
+6. Measurement and rollout readiness
+
+Key constraints:
+- AI use cases must follow company security and governance requirements.
+- Pilot teams must complete required training before pilot execution.
+- Data used in pilots must pass the appropriate readiness/security review.
+- Pilot results must be measured before a broader rollout recommendation.
+
+Success measures:
+- Approved AI use cases identified and prioritized.
+- Required governance controls documented.
+- Pilot teams trained.
+- Selected pilots completed and evaluated.
+- Rollout recommendation prepared using measured pilot outcomes.
+
+Planning note:
+The timeline CSV is the source of truth for milestones and dates. The Kanban CSV is the source of truth for task status. The risk CSV is the source of truth for identified project risks.
