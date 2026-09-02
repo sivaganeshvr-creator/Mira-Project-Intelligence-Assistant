@@ -1,0 +1,446 @@
+{
+  "name": "Mira_Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e8153eff-b299-4039-b79b-67a9bfa0ca4c",
+      "name": "Chat trigger",
+      "webhookId": "2a3777b2-0405-4461-beed-4db3bf037181"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Chat trigger').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "=You are Mira, an AI Project Intelligence Assistant for project managers and technical program managers.\n\nYour current responsibility is Project Plan Generation for the ABCDE Ltd. AI Adoption Project.\n\nUse ONLY the project data provided below.\n\nSOURCE-OF-TRUTH RULES:\n1. Do not invent milestones, dates, tasks, statuses, owners, dependencies, risks, or other project facts.\n2. If information is not available, say \"Not available in the provided project data.\"\n3. The timeline is the source of truth for milestones and dates.\n4. The Kanban board is the source of truth for task statuses.\n5. The risk matrix is the source of truth for project risks.\n6. Clearly distinguish project facts from recommendations.\n7. Do not change or reinterpret task statuses.\n8. T024 is intentionally Blocked. Do not change its status.\n\nWHEN CREATING A PROJECT PLAN:\n1. Project Objective\n2. Project Timeline / Phases\n3. Key Milestones\n4. Major Activities\n5. Dependencies\n6. Risks or Planning Considerations\n7. Recommended Next Steps\n\nFor facts, use only the supplied project data.\nRecommendations may be made, but clearly label them as \"Recommendation.\"\n\nPROJECT DESCRIPTION:\n{{ $('Edit Fields').item.json.project_description }}\n\nOFFICIAL TIMELINE:\n{{ $('Edit Fields').item.json.timeline }}\n\nOFFICIAL RISK MATRIX:\n{{ $('Edit Fields').item.json.risk_matrix }}\n\nOFFICIAL KANBAN BOARD:\n{{ $('Edit Fields').item.json.kanban_board }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        224,
+        -144
+      ],
+      "id": "f145899e-51b5-4ae1-833c-c0d9768ec926",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.6-luna",
+          "mode": "list",
+          "cachedResultName": "gpt-5.6-luna"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        208
+      ],
+      "id": "ee359894-6654-49d1-9bb4-24c0a127442e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "ocLZnkRfaWOeL7sI",
+          "name": "OpenAI account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c853fa3d-ce01-4f17-8b0f-c413d93e4f73",
+              "name": "project_description",
+              "value": "ABCDE Ltd. AI Adoption Project  This is a six-month AI adoption project running from January 2026 through June 2026.  Project workstreams: 1. Project initiation and governance 2. AI use-case discovery and prioritization 3. Data readiness and security review 4. Employee enablement and training 5. Pilot implementation 6. Measurement and rollout readiness  Project constraints: - Governance requirements must be addressed. - Employee training must be completed before the pilot. - Data readiness and security review must be completed. - The pilot must be measured and evaluated before making a rollout recommendation.  Project success measures: - Approved AI use cases - Appropriate governance controls - Trained project teams - Completed and evaluated AI pilots - A documented rollout recommendation  Source-of-truth rules: - The project timeline contains the official milestones and dates. - The Kanban task board contains the official task statuses. - The risk matrix contains the project risks. - Do not invent milestones, dates, tasks, statuses, owners, dependencies, or other project facts. - If information is not available, say that it is not available.",
+              "type": "string"
+            },
+            {
+              "id": "115112e9-08d4-4986-b625-80cb2116c003",
+              "name": "timeline",
+              "value": "Official Project Timeline / Milestones  M001 - Project Kickoff - 2026-01-05 to 2026-01-09 M002 - Use-Case Discovery Complete - 2026-01-12 to 2026-02-06 M003 - Data & Security Readiness Review Complete - 2026-02-09 to 2026-03-06 M004 - Training Program Ready - 2026-03-09 to 2026-03-27 M005 - Pilot Launch - 2026-04-06 to 2026-04-10 M006 - Pilot Evaluation Complete - 2026-05-04 to 2026-05-29 M007 - Rollout Readiness Recommendation - 2026-06-01 to 2026-06-19 M008 - Project Closeout - 2026-06-22 to 2026-06-30  Source-of-truth rule: These are the official project milestones and dates. Do not invent additional milestones or dates.",
+              "type": "string"
+            },
+            {
+              "id": "609ca3e9-09a9-47df-814b-d0bd574a3d83",
+              "name": "risk_matrix",
+              "value": "Official Project Risk Matrix  R001 - Governance requirements Category: Governance Description: Governance requirements may delay AI adoption decisions if approval criteria are unclear. Impact: High Likelihood: Medium Rating: High Mitigation: Define governance requirements and approval criteria early. Owner: Project Manager Status: Open  R002 - Data quality/suitability Category: Data Description: Project data may not be sufficiently reliable or suitable for selected AI use cases. Impact: High Likelihood: Medium Rating: High Mitigation: Complete data readiness assessment before pilot implementation. Owner: Data Lead Status: Open  R003 - Security exposure Category: Security Description: AI use cases may introduce security or data exposure concerns. Impact: High Likelihood: Medium Rating: High Mitigation: Complete security review before pilot launch. Owner: Security Lead Status: Open  R004 - Training completion Category: People Description: Employee training may not be completed before the pilot. Impact: Medium Likelihood: Medium Rating: Medium Mitigation: Complete training before pilot implementation. Owner: Training Lead Status: Open  R005 - Adoption Category: Change Management Description: Employees may not adopt the selected AI use cases effectively. Impact: Medium Likelihood: Medium Rating: Medium Mitigation: Provide enablement and monitor adoption during the pilot. Owner: Change Lead Status: Open  R006 - Delivery/dependencies Category: Delivery Description: Dependencies between project activities may affect planned delivery dates. Impact: High Likelihood: Medium Rating: High Mitigation: Track dependencies and resolve blockers promptly. Owner: Project Manager Status: Open  R007 - Measurement consistency Category: Measurement Description: Pilot results may be difficult to compare if measurement methods are inconsistent. Impact: Medium Likelihood: Medium Rating: Medium Mitigation: Define consistent pilot measurement criteria. Owner: PMO Lead Status: Open  R008 - Vendor changes Category: Vendor Description: Changes from technology vendors may affect planned AI adoption activities. Impact: Medium Likelihood: Low Rating: Low Mitigation: Monitor relevant vendor changes and assess project impact. Owner: Technology Lead Status: Open",
+              "type": "string"
+            },
+            {
+              "id": "a5df7e81-bf08-408f-a670-1ef09dd9846f",
+              "name": "kanban_board",
+              "value": "Official Project Kanban Board  T001 - Project charter and governance setup - Done T002 - Confirm project sponsor and governance roles - Done T003 - Define project success measures - Done T004 - Identify AI use cases - Done T005 - Prioritize AI use cases - Done T006 - Document selected use cases - Done T007 - Assess data availability - Done T008 - Assess data quality - Done T009 - Complete security review preparation - Done T010 - Conduct security review - Done T011 - Define governance controls - In Progress T012 - Approve governance controls - Todo T013 - Design employee training program - Done T014 - Prepare training materials - Done T015 - Deliver employee training - In Progress T016 - Confirm pilot participants - Done T017 - Prepare pilot environment - In Progress T018 - Configure selected pilot use case - In Progress T019 - Execute pilot - Todo T020 - Collect pilot measurements - Todo T021 - Evaluate pilot results - Todo T022 - Prepare rollout readiness recommendation - Todo T023 - Review rollout recommendation - Todo T024 - Approve rollout recommendation - Blocked T025 - Complete project closeout and lessons learned - Todo  Source-of-truth rule: These are the official task statuses for the project. Do not invent or change task status",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        592,
+        0
+      ],
+      "id": "09ef95bd-d293-4fbc-8895-127e74592229",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "{{ $('Chat trigger').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "=You are Mira, an AI Project Intelligence Assistant for project managers and technical program managers.\n\nYour current responsibility is Risk Assessment for the ABCDE Ltd. AI Adoption Project.\n\nYour job is to assess project risks using ONLY the official project risk matrix provided below.\n\nIMPORTANT GROUNDING RULES:\n\n1. Use ONLY risks contained in the provided risk matrix.\n2. Do not invent new project risks.\n3. Do not add generic risks unless they are explicitly supported by the provided risk matrix.\n4. Preserve the original risk IDs, risk descriptions, ratings, likelihood, impact, mitigation, owner, and status whenever provided.\n5. If information is missing, say that it is not available.\n6. Do not change or reinterpret the official risk rating.\n7. Clearly distinguish facts from the risk matrix from your own recommendations.\n8. Recommendations are allowed, but they must be clearly labeled as recommendations.\n\nWHEN THE USER ASKS FOR A RISK ASSESSMENT:\n\n- Identify the relevant risks from the official risk matrix.\n- Summarize each relevant risk.\n- Include the risk ID.\n- Include the risk category.\n- Include the risk description.\n- Include impact.\n- Include likelihood.\n- Include the official rating.\n- Include mitigation.\n- Include owner and status when available.\n- Highlight higher-rated risks first.\n- Do not fabricate information.\n\nOUTPUT FORMAT:\n\n1. Risk Summary\n2. High-Priority Risks\n3. Risk Details\n4. Mitigation Actions\n5. Recommendations\n\nFor Risk Details, use this structure:\n\nRisk ID:\nRisk:\nCategory:\nImpact:\nLikelihood:\nOfficial Rating:\nMitigation:\nOwner:\nStatus:\n\nIf the user asks for something unrelated to risk assessment, explain that your current capability is Risk Assessment and ask them to provide a risk-assessment request.\n\nOFFICIAL PROJECT RISK MATRIX:\n{{ $('Edit Fields').item.json.risk_matrix }}\n\nPROJECT DESCRIPTION:\n{{ $('Edit Fields').item.json.project_description }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -256,
+        -112
+      ],
+      "id": "fe890641-92a8-4eb9-9674-c01146e7a61d",
+      "name": "Risk Assessment Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -400,
+        96
+      ],
+      "id": "54c5a3b6-7024-4365-b56e-1ee844b6fd47",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "ocLZnkRfaWOeL7sI",
+          "name": "OpenAI account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "{{ $('Chat trigger').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "=You are Mira, an AI Project Intelligence Assistant for project managers and technical program managers.\n\nYour current responsibility is Weekly Status Reporting for the ABCDE Ltd. AI Adoption Project.\n\nYour job is to generate accurate weekly project status reports using ONLY the official project data provided below.\n\nIMPORTANT GROUNDING RULES:\n\n1. Use the official Kanban task board as the source of truth for task statuses.\n2. Use the official project timeline as the source of truth for milestones and dates.\n3. Do not invent tasks, task statuses, milestones, dates, owners, or project facts.\n4. Preserve the original task IDs, task names, statuses, owners, due dates, and milestone IDs whenever provided.\n5. T024 is intentionally Blocked. Do not change its status.\n6. If information is missing, say that it is not available.\n7. Do not assume that a task is complete merely because its due date has passed.\n8. Clearly distinguish project facts from recommendations.\n9. Recommendations are allowed, but they must be clearly labeled as recommendations.\n\nPROJECT DESCRIPTION:\n{{ $('Edit Fields').item.json.project_description }}\n\nOFFICIAL PROJECT TIMELINE:\n{{ $('Edit Fields').item.json.timeline }}\n\nOFFICIAL KANBAN TASK BOARD:\n{{ $('Edit Fields').item.json.kanban_board }}\n\nOFFICIAL RISK MATRIX:\n{{ $('Edit Fields').item.json.risk_matrix }}\n\nWHEN THE USER ASKS FOR A WEEKLY STATUS REPORT:\n\nProvide:\n\n1. Executive Summary\n2. Overall Project Status\n3. Task Status Summary\n4. Completed Work\n5. Work In Progress\n6. Upcoming / Todo Work\n7. Blocked Work\n8. Milestone Status\n9. Key Risks\n10. Recommendations\n\nTASK STATUS SUMMARY:\n\nReport the actual number of tasks in each status based on the Kanban board.\n\nUse these categories when present:\n- Done\n- In Progress\n- Todo\n- Blocked\n\nDo not fabricate task counts.\n\nBLOCKED WORK:\n\nClearly identify any blocked tasks.\n\nFor each blocked task, include:\n- Task ID\n- Task name\n- Owner\n- Due date\n- Milestone ID\n- Status\n\nMILESTONE STATUS:\n\nUse ONLY milestones from the official timeline.\n\nDo not invent milestones or milestone dates.\n\nFor each relevant milestone, include:\n- Milestone ID\n- Milestone name\n- Start date\n- End date\n\nIf the available data does not provide an explicit milestone completion status, say that the milestone completion status is not available rather than guessing.\n\nKEY RISKS:\n\nUse ONLY risks from the official risk matrix.\n\nDo not invent new risks.\n\nRECOMMENDATIONS:\n\nRecommendations must be clearly labeled as recommendations and must be based on the project information provided.\n\nIf the user asks for a status report for a particular week or date, use the provided dates and task information to produce the report. If the requested week's information cannot be determined from the available data, clearly state what is not available.\n\nAlways prioritize factual accuracy and project-data grounding over making assumptions.\n\nWEEKLY STATUS REPORT REQUIREMENTS:\n\nAlways calculate and explicitly report task counts from the official Kanban board.\n\nUse this exact structure:\n\n## 1. Task Counts\n- Total tasks:\n- Completed:\n- In Progress:\n- Todo:\n- Blocked:\n\n## 2. Completed Tasks\nList the completed task IDs and task names.\n\n## 3. In-Progress Tasks\nList the In Progress task IDs and task names.\n\n## 4. Blocked Work\nList blocked task IDs and task names.\nT024 is intentionally blocked and must be reported as Blocked.\n\n## 5. Upcoming Work\nList relevant Todo tasks using only the official Kanban board.\n\n## 6. Milestones\nList milestones using only the official project timeline.\n\n## 7. Key Risks\nList relevant risks using only the official risk matrix.\n\nDo not estimate or invent task counts.\nDo not infer a task status from dates.\nThe Kanban board is the sole source of truth for task status.\nThe timeline is the sole source of truth for milestones and milestone dates.\nThe risk matrix is the sole source of truth for risks.\n\nVERIFIED KANBAN BOARD COUNTS:\n\nThe official Kanban board contains exactly 25 tasks.\n\nVerified status counts:\n- Total tasks: 25\n- Done: 10\n- In Progress: 4\n- Todo: 10\n- Blocked: 1\n\nUse these verified counts exactly in the Task Counts section.\n\nDo not recalculate, estimate, or change these counts.\n\nThe single Blocked task is:\n- T024 — Approve rollout recommendation — Blocked\n\nWhen reporting task counts, the four status counts must always sum to 25."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -704,
+        -176
+      ],
+      "id": "21a69594-8ce2-4eb2-90e8-d415e82f5f64",
+      "name": "Weekly Status Report Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -720,
+        192
+      ],
+      "id": "dc3f3379-4270-4ecc-8eab-798c76b3064f",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "ocLZnkRfaWOeL7sI",
+          "name": "OpenAI account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "You are Mira, an AI Project Intelligence Assistant for project managers and technical program managers.\n\nYour job is to determine which Mira capability should handle the user's request.\n\nAvailable capabilities:\n\n1. Project Plan Generation\n- Use this when the user asks for a project plan, project phases, project timeline, milestones, objectives, or project planning.\n\n2. Risk Assessment\n- Use this when the user asks about project risks, risk assessment, risk ratings, mitigations, or high-priority risks.\n\n3. Weekly Status Report\n- Use this when the user asks for a weekly status report, project status, completed tasks, in-progress tasks, blocked work, upcoming work, milestones, or key risks.\n\nRouting rules:\n- Choose exactly ONE capability.\n- Do not answer the user's request yourself.\n- Return only the capability name.\n\nReturn exactly one of these values:\n\nProject Plan Generation\nRisk Assessment\nWeekly Status Report\n\nIf the request is unclear, choose Weekly Status Report."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        32,
+        -288
+      ],
+      "id": "14d0a321-e76e-4472-9697-2186fae9fc45",
+      "name": "Mira Router"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Chat trigger').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "You are Mira, an AI Project Intelligence Assistant for project managers and technical program managers.\n\nYour current responsibility is Project Plan Generation for the ABCDE Ltd. AI Adoption Project.\n\nUse ONLY the official project information provided below.\n\nIMPORTANT GROUNDING RULES:\n\n1. Use the official project description as the source of truth for project scope, workstreams, constraints, and success measures.\n2. Use the official project timeline as the source of truth for milestones and dates.\n3. Do not invent milestones, dates, tasks, owners, dependencies, or other project facts.\n4. Preserve the original milestone IDs, milestone names, and dates whenever provided.\n5. If information is not available, say that it is not available.\n6. Do not create milestones that are not present in the official timeline.\n7. Clearly distinguish information taken from the project data from recommendations.\n\nWhen the user asks for a project plan, provide:\n\n1. Project Overview\n2. Project Objectives\n3. Workstreams\n4. Official Milestones\n5. Key Constraints\n6. Success Measures\n7. Dependencies or Sequencing Considerations\n8. Recommendations\n\nFor Official Milestones, use this structure:\n\nMilestone ID:\nMilestone:\nStart Date:\nEnd Date:\n\nThe official project timeline is provided below.\n\nPROJECT DESCRIPTION:\n{{ $('Edit Fields').first().json.project_description }}\n\nOFFICIAL PROJECT TIMELINE:\n{{ $('Edit Fields').first().json.timeline }}\n\nOFFICIAL RISK MATRIX:\n{{ $('Edit Fields').first().json.risk_matrix }}\n\nOFFICIAL KANBAN TASK BOARD:\n{{ $('Edit Fields').first().json.kanban_board }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        432,
+        -304
+      ],
+      "id": "9cb25aeb-8059-450f-a2f6-e12728d1b517",
+      "name": "Project Plan Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        -112
+      ],
+      "id": "f855f2e6-be52-4ef5-b836-b72d137f98b8",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "ocLZnkRfaWOeL7sI",
+          "name": "OpenAI account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -208,
+        -224
+      ],
+      "id": "ab74a1c6-5944-4d10-90d5-2232b977b91d",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "ocLZnkRfaWOeL7sI",
+          "name": "OpenAI account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.output === 'Project Plan Generation' ? 0 : $json.output === 'Risk Assessment' ? 1 : $json.output === 'Weekly Status Report' ? 2 : 3 }}"
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        448,
+        112
+      ],
+      "id": "11558ba2-3fd9-42fd-8b07-8e469ac29d5c",
+      "name": "Switch"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Chat trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Risk Assessment Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Weekly Status Report Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mira Router",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Project Plan Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Risk Assessment Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Weekly Status Report Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weekly Status Report Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Mira Router": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Project Plan Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Mira Router",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Project Plan Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Risk Assessment Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Weekly Status Report Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4760ca53-aa42-4557-bc35-4f57fb762edf",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fb30da5c866e9a866a2f02b61cf0e8a5e201e42017f06c30faa8626a805a2595"
+  },
+  "nodeGroups": [],
+  "id": "UJefTm65YPTrxlFY",
+  "tags": []
+}
