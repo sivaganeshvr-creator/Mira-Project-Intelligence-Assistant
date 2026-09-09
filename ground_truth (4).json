@@ -1,0 +1,227 @@
+{
+  "project": "Mira \u2014 AI-Powered Project Intelligence Assistant",
+  "version": "1.0-reviewed-source-based",
+  "status": "PARTIAL_REVIEW_REQUIRED",
+  "important_note": "This ground truth is independently derived from the Mira course brief and the current GitHub source files. It is not generated from Mira's pipeline. The actual pipeline outputs must be captured separately for baseline_results.csv.",
+  "repository_dataset_status": "SYNTHETIC_REPLACEMENT_DATASET",
+  "source_files": [
+    "project_description.txt",
+    "timeline.csv",
+    "risk_matrix.csv",
+    "kanban_board.csv"
+  ],
+  "metrics": [
+    "Plan groundedness",
+    "Risk relevance",
+    "Status accuracy"
+  ],
+  "cases": [
+    {
+      "test_id": "T1",
+      "input": "Generate a project plan for the AI Adoption Project at ABCDE Ltd. Use the provided project description.",
+      "agent": "Project Plan Agent",
+      "ideal_output": {
+        "must_include": [
+          "six-month project duration: January 2026 through June 2026",
+          "project initiation and governance",
+          "AI use-case discovery and prioritization",
+          "data readiness and security review",
+          "employee enablement and training",
+          "pilot implementation",
+          "measurement and rollout readiness",
+          "milestones grounded in timeline.csv"
+        ],
+        "must_not": [
+          "invent goals or milestones not supported by the source files"
+        ]
+      }
+    },
+    {
+      "test_id": "T2",
+      "input": "Generate a project plan for: We want to build a chatbot.",
+      "agent": "Project Plan Agent",
+      "ideal_output": {
+        "must_include": [
+          "insufficient-detail response",
+          "request for scope",
+          "request for timeline",
+          "request for team size"
+        ],
+        "must_not": [
+          "generate a detailed project plan from one sentence"
+        ]
+      }
+    },
+    {
+      "test_id": "T3",
+      "input": "Generate a risk assessment for the AI Adoption Project at ABCDE Ltd.",
+      "agent": "Risk Assessment Agent",
+      "ideal_output": {
+        "must_include": [
+          "project-specific risks",
+          "risk categories",
+          "impact",
+          "likelihood/rating",
+          "mitigation",
+          "risks traceable to risk_matrix.csv"
+        ],
+        "known_source_risks": [
+          "R001 Governance",
+          "R002 Data",
+          "R003 Security",
+          "R004 People",
+          "R005 Adoption",
+          "R006 Delivery",
+          "R007 Measurement",
+          "R008 Vendor"
+        ],
+        "must_not": [
+          "invent unrelated generic risks"
+        ]
+      }
+    },
+    {
+      "test_id": "T4",
+      "input": "Generate a risk assessment for: New project starting soon.",
+      "agent": "Risk Assessment Agent",
+      "ideal_output": {
+        "must_include": [
+          "insufficient-detail response",
+          "request for project details"
+        ],
+        "must_not": [
+          "invent project-specific risks"
+        ]
+      }
+    },
+    {
+      "test_id": "T5",
+      "input": "Generate a weekly status report using the sample task board for Sprint 3.",
+      "agent": "Weekly Status Agent",
+      "ideal_output": {
+        "must_include": [
+          "actual task names from the task board",
+          "status-based reporting"
+        ],
+        "must_not": [
+          "invent tasks or statuses"
+        ],
+        "data_gap": "The current GitHub kanban_board.csv has no sprint column, so Sprint 3 membership cannot be independently verified from the current repository."
+      }
+    },
+    {
+      "test_id": "T6",
+      "input": "Generate a weekly status report for: Things are going fine.",
+      "agent": "Weekly Status Agent",
+      "ideal_output": {
+        "must_include": [
+          "state that task data is unavailable"
+        ],
+        "must_not": [
+          "fabricate task statuses",
+          "fabricate progress percentages"
+        ]
+      }
+    },
+    {
+      "test_id": "T7",
+      "input": "What are the top 3 risks for the ABCDE Ltd project?",
+      "agent": "Risk Assessment Agent",
+      "ideal_output": {
+        "must_include": [
+          "three risks selected from risk_matrix.csv",
+          "risk-specific explanation"
+        ],
+        "must_not": [
+          "invent risks outside risk_matrix.csv"
+        ]
+      }
+    },
+    {
+      "test_id": "T8",
+      "input": "Which tasks are blocked or at risk of missing their deadline?",
+      "agent": "Weekly Status Agent",
+      "ideal_output": {
+        "blocked_task": {
+          "task_id": "T024",
+          "task_name": "Approve rollout recommendation",
+          "status": "Blocked",
+          "due_date": "2026-06-19",
+          "milestone": "M007"
+        },
+        "must_include": [
+          "T024",
+          "blocked status",
+          "due-date context"
+        ],
+        "note": "The course brief calls this task 'Security review - BLOCKED', while the current GitHub synthetic kanban file names T024 'Approve rollout recommendation'. This discrepancy must be resolved with the official dataset before final submission."
+      }
+    },
+    {
+      "test_id": "T9",
+      "input": "Generate a project plan for a 2-week project with no other details.",
+      "agent": "Project Plan Agent",
+      "ideal_output": {
+        "must_include": [
+          "request for scope",
+          "request for goals",
+          "request for deliverables"
+        ],
+        "must_not": [
+          "generate a detailed plan from the existing timeline alone"
+        ]
+      }
+    },
+    {
+      "test_id": "T10",
+      "input": "Summarize current project status: tasks done, in progress, to do, blocked?",
+      "agent": "Weekly Status Agent",
+      "ideal_output": {
+        "source_counts_from_current_github_kanban": {
+          "Done": 10,
+          "In Progress": 4,
+          "Todo": 10,
+          "Blocked": 1
+        },
+        "total_tasks": 25,
+        "must_include": [
+          "counts matching the task board"
+        ],
+        "must_not": [
+          "invent task counts"
+        ]
+      }
+    },
+    {
+      "test_id": "T11",
+      "input": "What milestones are coming up in the next 2 weeks?",
+      "agent": "Project Plan Agent",
+      "ideal_output": {
+        "must_include": [
+          "milestones selected from timeline.csv",
+          "date-based reasoning"
+        ],
+        "must_not": [
+          "invent milestones"
+        ],
+        "data_gap": "The phrase 'next 2 weeks' requires an as-of date. The repository does not define a baseline evaluation date."
+      }
+    },
+    {
+      "test_id": "T12",
+      "input": "Generate a stakeholder update email for Sprint 2 progress.",
+      "agent": "Weekly Status Agent",
+      "ideal_output": {
+        "must_include": [
+          "professional stakeholder update",
+          "only source-grounded progress"
+        ],
+        "must_not": [
+          "invent Sprint 2 tasks",
+          "include unsupported Sprint 3+ tasks"
+        ],
+        "data_gap": "The current GitHub kanban_board.csv has no sprint column, so Sprint 2 membership cannot be independently verified from the current repository."
+      }
+    }
+  ]
+}
