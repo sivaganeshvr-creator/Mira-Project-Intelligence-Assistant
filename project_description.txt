@@ -2,7 +2,7 @@ ABCDE Ltd. AI Adoption Project
 DATASET STATUS: SYNTHETIC REPLACEMENT DATASET
 
 Important:
-The course assignment describes a complete ABCDE Ltd. dataset, but the actual course dataset files were not available in the materials provided to ChatGPT. This dataset is therefore a clearly labeled synthetic replacement created to let the Mira n8n build proceed. Do not present these values as the official course dataset unless your instructor confirms them.
+The course assignment describes a complete ABCDE Ltd. dataset, but the actual course dataset files were not available in the materials. This dataset is therefore a clearly labeled synthetic replacement created to let the Mira n8n build proceed. Do not present these values as the official course dataset unless your instructor confirms them.
 
 Project objective:
 ABCDE Ltd. is running a six-month AI Adoption Project to introduce practical, governed use of AI across selected business functions. The project focuses on preparing employees, selecting approved AI use cases, establishing governance, piloting the use cases, measuring outcomes, and preparing a controlled rollout.
